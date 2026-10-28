@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Facilitator Discovery | Adapted ADDIE Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&family=Lato:wght@400;700&display=swap');
+
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+
+  :root {
+    --navy: #1B2A4A;
+    --navy-mid: #243659;
+    --blue: #2E75B6;
+    --blue-light: #5B9BD5;
+    --accent: #4ECDC4;
+    --accent-dim: rgba(78,205,196,0.15);
+    --white: #FFFFFF;
+    --off-white: #F7F9FC;
+    --gray-100: #EEF2F7;
+    --gray-300: #CBD5E1;
+    --gray-500: #64748B;
+    --gray-700: #000000;
+    --text: #000000;
+    --phase-0: #6366F1;
+    --phase-1: #2E75B6;
+    --phase-2: #0EA5E9;
+    --phase-3: #10B981;
+    --phase-4: #F59E0B;
+    --phase-review: #E85D75;
+    --track-h: 6px;
+    --dot-size: 18px;
+  }
+
+
+  html { scroll-behavior: smooth; }
+
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--off-white);
+    color: #000000;
+    min-height: 100vh;
+  }
+
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(120deg, #070e2b 0%, #070e2b 60%, #1a3f6b 82%, #3586b8 100%);
+    padding: 48px 48px 56px;
+    padding-top: calc(48px + env(safe-area-inset-top, 0px));
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(78,205,196,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin-bottom: 12px;
+  }
+  .header h1 {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .header-sub {
+    margin-top: 10px;
+    font-size: 15px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+  }
+  .header-meta {
+    margin-top: 28px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+  }
+  .meta-pill span { color: var(--accent); }
+
+
+  /* ── MILESTONES STRIP ── */
+  .milestones-strip {
+    background: linear-gradient(120deg, #070e2b 0%, #070e2b 60%, #1a3f6b 82%, #3586b8 100%);
+    padding: 16px 48px;
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    flex-wrap: wrap;
+  }
+  .ms-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    flex-shrink: 0;
+  }
+  .ms-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .ms-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 13px;
+    color: #ffffff;
+    font-weight: 700;
+  }
+  .ms-desc {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+  }
+  .ms-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+  }
+
+
+  /* ── MAIN LAYOUT ── */
+  .main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 52px 32px 80px;
+  }
+
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 20px;
+  }
+
+
+  .addie-key {
+    margin-top: 8px;
+    padding: 14px 18px;
+    background: var(--gray-100);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    align-items: center;
+  }
+  .addie-key-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    flex-shrink: 0;
+  }
+  .addie-key-item {
+    font-family: 'Lato', sans-serif;
+    font-size: 12.5px;
+    color: #000000;
+  }
+  .addie-key-item strong {
+    color: var(--navy);
+  }
+
+
+  .shift-callout {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #1d4a30;
+    border-radius: 14px;
+    padding: 22px 26px;
+    margin-bottom: 32px;
+  }
+  .shift-callout-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .shift-callout-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 15px;
+    color: #ffffff;
+    line-height: 1.55;
+  }
+  .shift-callout-text strong {
+    color: #ffffff;
+  }
+
+
+  /* Subtle portfolio-context introduction; preserves the original design system. */
+  .portfolio-context {
+    max-width: 100%; margin: 0 0 20px; padding: 14px 18px;
+    background: #ffffff; border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0; font-family: 'Lato', sans-serif;
+    color: var(--navy); font-size: 13px; line-height: 1.65;
+  }
+  .portfolio-context p + p { margin-top: 8px; }
+  /* ── VISUAL TIMELINE ── */
+  .timeline-wrap {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--gray-100);
+    padding: 40px 40px 48px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+
+
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 36px;
+  }
+  .timeline-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+  .timeline-note {
+    font-size: 12px;
+    color: var(--gray-500);
+    font-style: italic;
+  }
+
+
+  /* Track */
+  .track-container {
+    position: relative;
+    padding: 8px 0 0;
+  }
+
+
+  .track-bar {
+    position: relative;
+    height: var(--track-h);
+    background: var(--gray-100);
+    border-radius: 100px;
+    /* inset so dots at column centers align with bar ends */
+    margin: 0 calc(100% / 12);
+  }
+
+
+  /* Phase segments on the track */
+  .track-segments {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .seg {
+    height: 100%;
+    flex: 1;
+    transition: opacity 0.2s;
+  }
+  .seg-0 { background: var(--phase-0); }
+  .seg-1 { background: var(--phase-1); }
+  .seg-2 { background: var(--phase-2); }
+  .seg-review { background: var(--phase-review); }
+  .seg-3 { background: var(--phase-3); }
+  .seg-4 { background: var(--phase-4); }
+
+
+  .dot-review { color: var(--phase-review); }
+
+
+  /* Dots — equal flex columns, dot centered in each */
+  .dots-row {
+    position: relative;
+    display: flex;
+    margin: 0;
+    top: calc(var(--track-h) / -2 - var(--dot-size) / 2 + 3px);
+  }
+  .dot-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+  .dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    border-radius: 50%;
+    border: 3px solid var(--white);
+    box-shadow: 0 0 0 2px currentColor;
+    background: currentColor;
+    transition: transform 0.18s, box-shadow 0.18s;
+    position: relative;
+    z-index: 2;
+  }
+  .dot-wrap:hover .dot {
+    transform: scale(1.35);
+    box-shadow: 0 0 0 3px currentColor, 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .dot-wrap.active .dot {
+    box-shadow: 0 0 0 3px currentColor, 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .dot-0 { color: var(--phase-0); }
+  .dot-1 { color: var(--phase-1); }
+  .dot-2 { color: var(--phase-2); }
+  .dot-3 { color: var(--phase-3); }
+  .dot-4 { color: var(--phase-4); }
+
+
+  /* Phase labels — equal flex columns matching dots */
+  .dot-labels {
+    display: flex;
+    margin: 22px 0 0;
+  }
+  .dot-label {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    cursor: pointer;
+    text-align: center;
+    padding: 0 4px;
+  }
+  .dot-label-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--gray-500);
+  }
+  .dot-label-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .dot-label-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-500);
+    margin-top: 2px;
+  }
+  .dot-label:hover .dot-label-name,
+  .dot-label.active .dot-label-name { color: var(--navy); }
+
+
+  /* ── PHASE DETAIL CARDS ── */
+  .phase-cards {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+
+
+  .phase-card {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1.5px solid var(--gray-100);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .phase-card:hover {
+    border-color: var(--gray-300);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .phase-card.open {
+    border-color: var(--blue-light);
+    box-shadow: 0 4px 20px rgba(46,117,182,0.12);
+  }
+
+
+  .card-header:focus-visible { outline: 3px solid var(--blue); outline-offset: -3px; }
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+  }
+  .card-phase-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    flex-shrink: 0;
+    color: var(--white);
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    flex: 1;
+    letter-spacing: -0.01em;
+  }
+  .card-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-500);
+    flex-shrink: 0;
+  }
+  .card-chevron {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: var(--gray-300);
+    transition: transform 0.25s;
+  }
+  .phase-card.open .card-chevron { transform: rotate(180deg); color: var(--blue); }
+
+
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4,0,0.2,1);
+  }
+  .phase-card.open .card-body { max-height: 2400px; }
+
+
+  .card-body-inner {
+    padding: 0 24px 24px;
+    border-top: 1px solid var(--gray-100);
+    padding-top: 20px;
+  }
+  .card-activities-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 12px;
+  }
+  .card-activities {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card-activities li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #000000;
+    line-height: 1.45;
+  }
+  .card-activities li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+
+
+  /* Tiered ideas callout */
+  .tier-callout {
+    margin-top: 16px;
+    background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+  }
+  .tier-callout-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .tier-callout p {
+    font-size: 13px;
+    color: var(--navy);
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+  .tiers {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tier-chip {
+    padding: 5px 12px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1.5px solid;
+  }
+  .tier-safe   { color: #10B981; border-color: #10B981; background: rgba(16,185,129,0.08); }
+  .tier-stretch{ color: #2E75B6; border-color: #2E75B6; background: rgba(46,117,182,0.08); }
+  .tier-bold   { color: #8B5CF6; border-color: #8B5CF6; background: rgba(139,92,246,0.08); }
+
+
+  .regroup-callout {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    margin-top: 16px;
+    background: #EFF6FF;
+    border-left: 4px solid var(--phase-2);
+    border-radius: 0 10px 10px 0;
+    padding: 16px 18px;
+  }
+  .regroup-callout-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .regroup-callout-label {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+    letter-spacing: 0.01em;
+  }
+  .regroup-callout-body {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    line-height: 1.55;
+  }
+
+
+  /* ── TIERED AMBITION FRAMEWORK SECTION ── */
+  .taf-section {
+    background: var(--white);
+    border-radius: 16px;
+    border: 1px solid var(--gray-100);
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  }
+  .taf-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+  }
+  .taf-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.02em;
+  }
+  .taf-phase-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--phase-1);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .taf-intro {
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    color: #000000;
+    line-height: 1.65;
+    margin-bottom: 12px;
+    max-width: 720px;
+  }
+  .taf-defs-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .taf-def-block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .taf-def-text {
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    color: #000000;
+    line-height: 1.55;
+    display: block;
+  }
+  .taf-def-bullet {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .taf-def-bullet li.taf-def-text {
+    padding-left: 0;
+    position: relative;
+  }
+  .taf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  @media (max-width: 700px) {
+    .taf-grid { grid-template-columns: 1fr; }
+  }
+  .taf-card {
+    border-radius: 12px;
+    border: 1.5px solid;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .taf-card-safe   { border-color: rgba(16,185,129,0.3);  background: rgba(16,185,129,0.04); }
+  .taf-card-stretch{ border-color: rgba(46,117,182,0.3);  background: rgba(46,117,182,0.04); }
+  .taf-card-bold   { border-color: rgba(139,92,246,0.3);  background: rgba(139,92,246,0.04); }
+
+
+  .taf-card-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+  .taf-card-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .taf-card-safe   .taf-card-label { color: #059669; }
+  .taf-card-stretch .taf-card-label { color: var(--blue); }
+  .taf-card-bold   .taf-card-label { color: #7C3AED; }
+
+
+  .taf-card-def {
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+    color: #000000;
+    line-height: 1.55;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    padding-top: 12px;
+  }
+  .taf-card-examples-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin-bottom: 6px;
+  }
+  .taf-card-examples {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .taf-card-examples li {
+    font-size: 12.5px;
+    font-family: 'Lato', sans-serif;
+    color: #000000;
+    line-height: 1.4;
+    display: flex;
+    gap: 7px;
+    align-items: flex-start;
+  }
+  .taf-card-examples li::before {
+    content: '→';
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    opacity: 0.5;
+  }
+
+
+  /* Tier block: definition + Looks Like box stacked together */
+  .taf-tier-block {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .taf-tier-block:last-child { margin-bottom: 0; }
+
+
+  /* Horizontal layout variant for examples within each tier's box */
+  .taf-card-examples-h {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+  }
+  .taf-card-examples-h li {
+    flex: 1 1 220px;
+  }
+
+
+  .taf-rationale {
+    background: var(--gray-100);
+    border-radius: 10px;
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .taf-rationale { grid-template-columns: 1fr; } }
+
+
+  .taf-rationale-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .taf-rationale-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .taf-rationale-text {
+    font-size: 13px;
+    color: var(--gray-700);
+    line-height: 1.5;
+  }
+  .taf-rationale-text strong {
+    display: block;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 2px;
+    font-size: 13px;
+  }
+
+
+  /* ── OPEN QUESTIONS ── */
+  .oq-box {
+    background: var(--white);
+    border-radius: 14px;
+    border: 1px solid var(--gray-100);
+    padding: 28px 32px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .oq-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .oq-body {
+    font-size: 14px;
+    color: var(--gray-700);
+    line-height: 1.6;
+  }
+
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--gray-300);
+    letter-spacing: 0.08em;
+    border-top: 1px solid var(--gray-100);
+  }
+
+
+  @media (max-width: 640px) {
+    .header { padding: 32px 24px 40px; padding-top: calc(32px + env(safe-area-inset-top, 0px)); }
+    .header-milestones { gap: 16px; margin-top: 20px; padding-top: 18px; }
+    .main { padding: 32px 16px 60px; }
+    .timeline-wrap { padding: 24px 20px 32px; }
+    .dot-label-name { font-size: 10px; }
+    .card-header { padding: 16px 18px; }
+    .card-body-inner { padding: 16px 18px; padding-top: 16px; }
+    .oq-box { padding: 20px 20px; }
+  }
+
+
+  /* ── 6-PHASE TIMELINE (Option B) ── */
+  .tl { position: relative; padding: 10px 0 0; }
+  .tl-line { position: absolute; top: 38px; left: 28px; right: 28px; height: 3px; background: var(--gray-300); z-index: 0; border-radius: 2px; }
+  .tl-row { display: grid; grid-template-columns: repeat(6, 1fr); position: relative; z-index: 1; }
+  .tl-col { display: flex; flex-direction: column; align-items: center; padding: 0 4px; }
+  .tl-icon {
+    width: 58px; height: 58px; border-radius: 50%; background: #fff; border: 3px solid;
+    display: flex; align-items: center; justify-content: center; font-size: 24px;
+    box-shadow: 0 2px 8px rgba(27,42,74,0.1);
+  }
+  .tl-name { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: var(--navy); text-align: center; margin-top: 16px; line-height: 1.25; }
+  .tl-phase { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-500); margin-top: 8px; }
+  .tl-date { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--gray-500); margin-top: 4px; text-align: center; }
+
+
+  @media (max-width: 700px) {
+    .tl-row { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
+    .tl-line { display: none; }
+    .tl-name { font-size: 13px; }
+  }
+
+
+
+
+  .header-milestones {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+
+
+</style>
+</head>
+<body>
+
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-eyebrow">Facilitator Learning Support · Adapted ADDIE</div>
+  <h1>Discovery &amp; Development Roadmap</h1>
+  <div class="header-milestones">
+    <div class="ms-label">Original Plan Milestones</div>
+    <div class="ms-item">
+      <div class="ms-date">Jun 19</div>
+      <div class="ms-desc">Roadmap submission target</div>
+    </div>
+    <div class="ms-divider"></div>
+    <div class="ms-item">
+      <div class="ms-date">Jun 26</div>
+      <div class="ms-desc">Midpoint target — direction and drafts underway</div>
+    </div>
+    <div class="ms-divider"></div>
+    <div class="ms-item">
+      <div class="ms-date">Jul 6</div>
+      <div class="ms-desc">Planned implementation handoff</div>
+    </div>
+  </div>
+</header>
+
+
+<!-- MAIN -->
+<main class="main">
+
+
+  <!-- Portfolio clarification: separates planning artifact from outcome reporting. -->
+  <div class="portfolio-context" aria-label="Project context and status">
+    <p><strong>Design context:</strong> This is the original proposed roadmap for an instructional design initiative to develop platform support resources. The six-phase timeline below preserves the <strong>original planned sequence and June–July dates</strong>; it does not represent the full duration of the project. Production, review, and delivery continued beyond that initial window. Independent preparation, a live facilitator discovery session, and survey responses informed the work.</p>
+    <p><strong>Why I adapted ADDIE:</strong> Rather than treating ADDIE as a rigid sequence, I kept the initial discovery phase focused on identifying the most important learner needs and content gaps. I began developing high-confidence resources while continuing to refine the content map, using facilitator feedback throughout the process to keep the work moving without sacrificing accuracy.</p>
+    <p><strong>From discovery questions to content priorities:</strong> Alongside facilitator conversations and survey responses, I used an AI-assisted walkthrough to investigate the platform. Together, these inputs helped me develop roughly 60–70 working questions. I grouped and reframed smaller “micro-questions” into broader questions that individual support articles could address, then prioritized the work by audience need and topic: <strong>Priority 1 — Fundamentals</strong> (user-oriented basics, such as “Getting Started”); <strong>Priority 2 — Extensions</strong> (what users could do once they understood the basics); and <strong>Priority 3 — Support</strong> (troubleshooting and help). These are the later article-production priorities, separate from the six planned roadmap phases below.</p>
+    <p><strong>Subsequent project leadership and production:</strong> After the original roadmap window, I continued leading the project through these three content-production phases. I assigned articles across the team, wrote some myself, and reviewed and refined others. At our first meeting, I established shared expectations for article structure, formatting, and language. We followed a recurring cycle of drafting, submission, refinement, and team discussion before moving to the next content phase. Throughout the work, I returned to facilitator discussion and survey input to check distinctions and maintain alignment; AI-assisted work occasionally resurfaced useful references.</p>
+    <p><strong>Discovery examples — clarifying audience and scope:</strong> An article about creating groups initially needed a clearer audience: was it explaining the task from an administrator’s perspective or an end user’s? We narrowed and clarified the guidance rather than creating separate versions. In another case, I collaborated with a partner-facing colleague to define what “troubleshooting and support” actually needed to cover; we broke that broad topic into smaller, more focused pieces of guidance. Both examples reflect how stakeholder input shaped practical content decisions.</p>
+    <p><strong>Continuing guide design and team enablement:</strong> I am leading the next stage of segmented, behavior-targeted in-product guidance and helping colleagues who are new to the guidance platform learn how to use it. I created a simple PowerPoint guide template, including instructions, so the team could plan guides in a familiar format. The intended workflow uses shared-file comments and review in SharePoint before transferring guide content into the in-product platform, rather than introducing a separate custom review tool. The guides remain in development, not live.</p>
+    <p><strong>Quality review, technical integration, and next steps:</strong> The team developed approximately 15 support articles and completed two rounds of facilitator/subject-matter expert accuracy review. The articles support a retrieval-augmented knowledge source intended for on-demand user assistance; <strong>Priority 3 support articles are still being processed by the technical team</strong>, so integration is not yet complete across all priorities. The content is also informing segmented, behavior-targeted in-product guides, <strong>which remain in development and are not live.</strong> It is too early to assess user adoption, effectiveness, or learning-performance outcomes.</p>
+  </div>
+
+  <!-- VISUAL TIMELINE -->
+  <div class="timeline-wrap">
+    <div class="timeline-header">
+      <div class="timeline-title">6-Phase Adapted ADDIE Timeline</div>
+      <div class="timeline-note">Original planned window · Jun 14 – Jul 6</div>
+    </div>
+
+
+    <div class="tl">
+      <div class="tl-line"></div>
+      <div class="tl-row">
+        <div class="tl-col">
+          <div class="tl-icon" style="border-color:var(--phase-0)">🔍</div>
+          <div class="tl-name">Discovery</div>
+          <div class="tl-phase">Phase 1</div>
+          <div class="tl-date">Jun 14–19</div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-icon" style="border-color:var(--phase-1)">✏️</div>
+          <div class="tl-name">Design + Build Start</div>
+          <div class="tl-phase">Phase 2</div>
+          <div class="tl-date">Jun 22–24</div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-icon" style="border-color:var(--phase-2)">🔧</div>
+          <div class="tl-name">Design / Dev Blend</div>
+          <div class="tl-phase">Phases 3–4</div>
+          <div class="tl-date">Jun 25–Jul 1</div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-icon" style="border-color:var(--phase-review)">✅</div>
+          <div class="tl-name">QA &amp; Review</div>
+          <div class="tl-phase">Phase 5</div>
+          <div class="tl-date">Jul 2–3</div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-icon" style="border-color:var(--phase-3)">🚀</div>
+          <div class="tl-name">Implementation</div>
+          <div class="tl-phase">Phase 6</div>
+          <div class="tl-date">Jul 6</div>
+        </div>
+        <div class="tl-col">
+          <div class="tl-icon" style="border-color:var(--phase-4)">📊</div>
+          <div class="tl-name">Evaluation</div>
+          <div class="tl-phase">Post-implementation</div>
+          <div class="tl-date">Ongoing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- PHASE CARDS -->
+  <div class="section-label">Phase Details • Click Below to Expand</div>
+  <div class="phase-cards" id="phaseCards">
+
+
+    <!-- Week 1 -->
+    <div class="phase-card" id="card-0">
+      <div class="card-header" onclick="toggleCard(0)" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' ' ){event.preventDefault();toggleCard(0);}">
+        <div class="card-phase-badge" style="background:var(--phase-0)">Phase 1</div>
+        <div class="card-title">Discovery</div>
+        <div class="card-date">Jun 14–19</div>
+        <svg class="card-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="card-activities-label">Key Activities</div>
+          <ul class="card-activities">
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Independent platform orientation and question preparation before facilitator conversations</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Live facilitator discovery session completed — its input became a recurring reference throughout design</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Facilitator survey distributed and responses received — findings informed design alongside the live session (individual results not reproduced here)</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Content inventory — catalog what exists on the support site and platform</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Review existing video assets for extractable language</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Synthesize findings across conversations, survey responses, and inventory exploration into a rough map and a short list of high-confidence build candidates</li>
+          </ul>
+          <div class="regroup-callout" style="background:#F5F3FF; border-left-color:#7C3AED;">
+            <div class="regroup-callout-icon">⏱️</div>
+            <div class="regroup-callout-content">
+              <div class="regroup-callout-label">Hard Cap Mindset</div>
+              <div class="regroup-callout-body">The output of this phase isn't completeness — it's a rough map of what exists, the obvious gaps, and 1–2 high-confidence things worth building. If the week ends and you're still "figuring it out," it's gone too deep.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Week 2 -->
+    <div class="phase-card" id="card-1">
+      <div class="card-header" onclick="toggleCard(1)" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' ' ){event.preventDefault();toggleCard(1);}">
+        <div class="card-phase-badge" style="background:var(--phase-1)">Phase 2</div>
+        <div class="card-title">Design + Build Start</div>
+        <div class="card-date">Jun 22–24</div>
+        <svg class="card-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="card-activities-label">Key Activities</div>
+          <ul class="card-activities">
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Content mapping — what exists, what needs to be built, where things link or extend</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Categorize content as: Link (point to existing), Companion (extend existing), or New Build</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Bring 2–3 tiered directions early in the phase</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">In parallel: begin building on anything clearly Safe or Stretch — drafts, outlines, page structure</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Early draft of mapping due — Jun 26</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;"><span style="display:inline-block; border:1.5px solid var(--navy); border-radius:5px; padding:1px 8px; margin-right:6px; font-weight:700; font-size:12px; letter-spacing:0.03em;">EOP Target</span> a largely complete map, and at least one real asset in draft form — not just planned.</li>
+          </ul>
+          <div class="tier-callout" style="background: linear-gradient(135deg, #f0f6ff 0%, #ffffff 100%); border: 1.5px solid var(--navy); border-left: 4px solid var(--navy);">
+            <div class="tier-callout-label" style="color:var(--navy);">↓ Tiered Ambition Framework — applied in this phase</div>
+            <p>Before bringing content ideas to review, each will be categorized by ambition level. This prevents good ideas from being self-filtered out before leadership has a chance to weigh in — and provides a menu, not just a single recommendation.</p>
+            <div class="tiers">
+              <div class="tier-chip tier-safe">🟢 Safe — existing content, light lift, clear precedent</div>
+              <div class="tier-chip tier-stretch">🔵 Stretch — new content, moderate build, fits expected scope</div>
+              <div class="tier-chip tier-bold">🟣 Bold — new format, feature, or approach; potentially requiring in-product guidance or technical integration</div>
+            </div>
+            <p style="margin-top:10px; font-size:12px; color:var(--gray-500);">Full framework breakdown in section below ↓</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Weeks 3-4 -->
+    <div class="phase-card" id="card-2">
+      <div class="card-header" onclick="toggleCard(2)" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' ' ){event.preventDefault();toggleCard(2);}">
+        <div class="card-phase-badge" style="background:var(--phase-2)">Phases 3–4</div>
+        <div class="card-title">Design / Dev Blend</div>
+        <div class="card-date">Jun 25–Jul 1</div>
+        <svg class="card-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="card-activities-label">Key Activities</div>
+          <ul class="card-activities">
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Lean into production while continuing to refine the map</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Continue building content pages and assets</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Run lightweight review loops as things take shape — not formal sign-off cycles</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Keep facilitator discussion references and survey input available to check distinctions and maintain alignment during development</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Fill in remaining gaps in the map only where they affect what's actively being built</li>
+          </ul>
+          <div class="regroup-callout">
+            <div class="regroup-callout-icon">🔁</div>
+            <div class="regroup-callout-content">
+              <div class="regroup-callout-label">Jun 26 Checkpoint — Midpoint, Not Final</div>
+              <div class="regroup-callout-body">The Jun 26 deliverable was planned as a midpoint. The standard: direction is solid, builds are underway. By end of this phase, most core assets should exist in draft form.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Week 5 -->
+    <div class="phase-card" id="card-review">
+      <div class="card-header" onclick="toggleCard('review')" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' ' ){event.preventDefault();toggleCard('review');}">
+        <div class="card-phase-badge" style="background:var(--phase-review)">Phase 5</div>
+        <div class="card-title">QA &amp; Review</div>
+        <div class="card-date">Jul 2–3</div>
+        <svg class="card-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="card-activities-label">Key Activities</div>
+          <ul class="card-activities">
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Consistency, tone, and accuracy pass across all content</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Facilitator QA — loop in trusted facilitators to flag anything that doesn't reflect how the platform actually works</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Final sign-off before handoff to tech team</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Revision cleanup — address feedback before pages are considered ready for implementation</li>
+          </ul>
+          <div class="regroup-callout" style="background:#FDF2F4; border-left-color:var(--phase-review);">
+            <div class="regroup-callout-icon">✅</div>
+            <div class="regroup-callout-content">
+              <div class="regroup-callout-label">Final Reviews</div>
+              <div class="regroup-callout-body">By this point, review has already been happening throughout Phases 2–4 — this phase confirms everything is ready, not where direction gets decided. Focus is consistency and accuracy. If you're still debating what to build here, you're behind.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Weeks 5-6 -->
+    <div class="phase-card" id="card-3">
+      <div class="card-header" onclick="toggleCard(3)" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' ' ){event.preventDefault();toggleCard(3);}">
+        <div class="card-phase-badge" style="background:var(--phase-3)">Phase 6</div>
+        <div class="card-title">Implementation</div>
+        <div class="card-date">Jul 6</div>
+        <svg class="card-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="card-activities-label">Key Activities</div>
+          <ul class="card-activities">
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Finalize and package content for handoff</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Hand off completed pages to tech team for platform integration</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Coordinate on technical requirements and page structure ahead of handoff</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Validate links, structure, and placement within the platform</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Deployment, not creation — the content already exists by this point. The target was to have materials ready for the planned July 6 implementation handoff.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Post-July 4 -->
+    <div class="phase-card" id="card-4">
+      <div class="card-header" onclick="toggleCard(4)" role="button" tabindex="0" aria-expanded="false" onkeydown="if(event.key==='Enter'||event.key===' ' ){event.preventDefault();toggleCard(4);}">
+        <div class="card-phase-badge" style="background:var(--phase-4)">After handoff</div>
+        <div class="card-title">Evaluation</div>
+        <div class="card-date">Ongoing</div>
+        <svg class="card-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 8l5 5 5-5"/></svg>
+      </div>
+      <div class="card-body">
+        <div class="card-body-inner">
+          <div class="card-activities-label">Key Activities</div>
+          <ul class="card-activities">
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Confirm pages are live and functioning within the platform</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Gather initial feedback from facilitators and users</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Collect live feedback from learners and maintain ongoing assessment of evolving needs</li>
+            <li style="color:#000000;font-family:'Lato',sans-serif;">Iterate based on real use — adjust language, structure, or content as needed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+  <!-- TIERED AMBITION FRAMEWORK -->
+  <div class="section-label" style="margin-top:48px;">Tiered Ambition Framework</div>
+  <div class="taf-section">
+    <div class="taf-header">
+      <div class="taf-title">The Tiered Ambition Framework</div>
+      <div class="taf-phase-tag">Applied in Phase 2 · Design</div>
+    </div>
+    <p class="taf-intro">
+      The roadmap calls for assigning each content idea a tier before review:
+    </p>
+
+
+    <div class="taf-defs-row">
+
+
+      <!-- SAFE -->
+      <div class="taf-tier-block">
+        <div class="taf-def-block">
+          <div class="taf-card-label" style="color:#059669;">Safe</div>
+          <ul class="taf-def-bullet"><li class="taf-def-text">Existing content or a light-lift adaptation with clear precedent.</li></ul>
+        </div>
+        <div class="taf-card taf-card-safe">
+          <div class="taf-card-examples-label"><span style="margin-right:6px;">🟢</span>Looks like</div>
+          <ul class="taf-card-examples taf-card-examples-h">
+            <li>Linking to an existing support page already covering the topic</li>
+            <li>Repurposing language from a vetted video into a written page</li>
+            <li>A companion page that extends something already built, staying close to the original</li>
+            <li>A feature explainer that mirrors the platform's own existing documentation</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- STRETCH -->
+      <div class="taf-tier-block">
+        <div class="taf-def-block">
+          <div class="taf-card-label" style="color:#2E75B6;">Stretch</div>
+          <ul class="taf-def-bullet"><li class="taf-def-text">New content that doesn't exist yet but fits comfortably within expected scope. Moderate build effort; the idea itself isn't a reach, just the execution.</li></ul>
+        </div>
+        <div class="taf-card taf-card-stretch">
+          <div class="taf-card-examples-label"><span style="margin-right:6px;">🔵</span>Looks like</div>
+          <ul class="taf-card-examples taf-card-examples-h">
+            <li>Creating a platform walkthrough</li>
+            <li>Drafting a reference page that doesn't exist anywhere currently</li>
+            <li>Building out an FAQ page</li>
+          </ul>
+        </div>
+      </div>
+
+
+      <!-- BOLD -->
+      <div class="taf-tier-block">
+        <div class="taf-def-block">
+          <div class="taf-card-label" style="color:#7C3AED;">Bold</div>
+          <ul class="taf-def-bullet"><li class="taf-def-text">Genuinely new in format, feature, or approach. Outside established precedent. Requires leadership sign-off before investing in. potentially requiring in-product guidance or technical integration ideas.</li></ul>
+        </div>
+        <div class="taf-card taf-card-bold">
+          <div class="taf-card-examples-label"><span style="margin-right:6px;">🟣</span>Looks like</div>
+          <ul class="taf-card-examples taf-card-examples-h">
+            <li>Embedding an interactive element within the platform page itself (e.g. a "?" help trigger)</li>
+            <li>Placing content inside the platform UI rather than on a support page</li>
+            <li>Introducing a format or content type that hasn't been done before in this context</li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+</main>
+
+
+<footer class="footer">
+  Adapted ADDIE Roadmap · Portfolio Work Sample · Original Planning Artifact
+</footer>
+
+
+<script>
+  function toggleCard(index) {
+    const card = document.getElementById('card-' + index);
+    if (!card) return;
+    const isOpen = card.classList.contains('open');
+
+    document.querySelectorAll('.phase-card').forEach(c => {
+      c.classList.remove('open');
+      const control = c.querySelector('.card-header');
+      if (control) control.setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      card.classList.add('open');
+      const control = card.querySelector('.card-header');
+      if (control) control.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  // Open Phase 0 by default
+  toggleCard(0);
+</script>
+</body>
+</html>
